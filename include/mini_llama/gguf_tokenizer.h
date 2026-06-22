@@ -4,6 +4,7 @@
 #ifndef INCLUDE_MINI_LLAMA_GGUF_TOKENIZER_H_
 #define INCLUDE_MINI_LLAMA_GGUF_TOKENIZER_H_
 
+#include <cstdint>
 #include <map>
 #include <memory>
 #include <string>
