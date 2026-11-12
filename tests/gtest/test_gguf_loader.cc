@@ -11,6 +11,7 @@
 #include "mini_llama/forward.h"
 #include "mini_llama/gguf_loader.h"
 #include "tests/gguf_loader_fixture.h"
+#include "tests/gguf_test_utils.h"
 #include "tests/test_names.h"
 
 TEST(GgufLoaderTest, LoadsTinyFixture) {
@@ -63,7 +64,7 @@ TEST(GgufLoaderTest, FixtureEntersForwardPath) {
 
 TEST(GgufLoaderTest, LoadsRealModelWhenAvailable) {
   const std::string path = "models/chat/Qwen2-0.5B-Instruct-Q8_0.gguf";
-  if (!std::filesystem::exists(path)) {
+  if (!mini_llama::test::HasGgufMagic(path)) {
     GTEST_SKIP() << "local demo GGUF is not available";
   }
 

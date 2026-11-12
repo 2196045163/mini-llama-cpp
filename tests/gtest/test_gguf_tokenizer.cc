@@ -10,6 +10,7 @@
 #include "mini_llama/chat.h"
 #include "mini_llama/gguf_tokenizer.h"
 #include "mini_llama/prompt_builder.h"
+#include "tests/gguf_test_utils.h"
 #include "tests/gguf_tokenizer_fixture.h"
 #include "tests/test_names.h"
 
@@ -53,7 +54,7 @@ TEST(GgufTokenizerTest, SpecialTokens) {
 
 TEST(GgufTokenizerTest, LoadsRealModelWhenAvailable) {
   const std::string path = "models/chat/Qwen2-0.5B-Instruct-Q8_0.gguf";
-  if (!std::filesystem::exists(path)) {
+  if (!mini_llama::test::HasGgufMagic(path)) {
     GTEST_SKIP() << "local demo GGUF is not available";
   }
 

@@ -10,6 +10,7 @@
 #include "mini_llama/chat.h"
 #include "mini_llama/gguf_tokenizer.h"
 #include "mini_llama/prompt_builder.h"
+#include "tests/gguf_test_utils.h"
 #include "tests/gguf_tokenizer_fixture.h"
 #include "tests/test_main.h"
 #include "tests/test_names.h"
@@ -76,7 +77,7 @@ static bool TestGgufTokenizerSpecialTokens() {
 
 static bool TestGgufTokenizerLoadsRealModelWhenAvailable() {
   const std::string path = "models/chat/Qwen2-0.5B-Instruct-Q8_0.gguf";
-  if (!std::filesystem::exists(path)) {
+  if (!mini_llama::test::HasGgufMagic(path)) {
     return true;
   }
 
@@ -90,7 +91,8 @@ static bool TestGgufTokenizerLoadsRealModelWhenAvailable() {
 }
 
 static bool TestGgufTokenizerMatchesBpeTokenizer() {
-  if (!std::filesystem::exists("models/chat/Qwen2-0.5B-Instruct-Q8_0.gguf") ||
+  if (!mini_llama::test::HasGgufMagic(
+          "models/chat/Qwen2-0.5B-Instruct-Q8_0.gguf") ||
       !std::filesystem::exists("models/chat/vocab.json") ||
       !std::filesystem::exists("models/chat/merges.txt")) {
     return true;

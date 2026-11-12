@@ -6,3 +6,21 @@ __pycache__/
 *.pyc
 *.dSYM/
 .claude/settings.local.json
+RESUME_PROJECT_REPORT.md
+
+# Downloaded model and exported tokenizer
+/models/chat/*.gguf
+/models/chat/vocab.json
+/models/chat/merges.txt
+/models/chat/special_tokens.json
+/models/chat/chat_template.txt
+
+# Local packages and generated results
+/*.deb
+/artifacts/
+*.log
+
+# Local environment
+/.aws/
+/.codex/
+/.agents/
